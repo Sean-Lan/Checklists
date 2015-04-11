@@ -7,16 +7,45 @@
 //
 
 #import "ChecklistsViewController.h"
-
+#import "ChecklistItem.h"
 @interface ChecklistsViewController ()
 
 @end
 
-@implementation ChecklistsViewController
+@implementation ChecklistsViewController{
+    NSMutableArray *_items;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    _items = [[NSMutableArray alloc] initWithCapacity:20];
+    
+    ChecklistItem *item;
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Item One";
+    item.checked = NO;
+    [_items addObject:item];
+    
+    item = [[ChecklistItem alloc]init];
+    item.text = @"Item Two";
+    item.checked = NO;
+    [_items addObject:item];
+    
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Item Three";
+    item.checked = NO;
+    [_items addObject:item];
+    
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Item Four";
+    item.checked = NO;
+    [_items addObject:item];
+    
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Item Five";
+    item.checked = NO;
+    [_items addObject: item];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,33 +54,32 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return [_items count];
+}
+
+- (void)configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    ChecklistItem *item = _items[indexPath.row];
+    if (item.checked) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
     UILabel *label = (UILabel *)[cell viewWithTag:1000];
-    if (indexPath.row%5 == 0) {
-        label.text = @"我是蓝翔第一行";
-    } else if (indexPath.row%5 == 1) {
-        label.text = @"我是蓝翔第二行";
-    } else if (indexPath.row%5 == 2) {
-        label.text = @"我是蓝翔第三行";
-    } else if (indexPath.row%5 == 3) {
-        label.text = @"我是蓝翔第四行";
-    } else if (indexPath.row%5 == 4) {
-        label.text = @"我是蓝翔第五行";
-    }
+    ChecklistItem *item = _items[indexPath.row];
+    label.text = item.text;
+    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
     return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (cell.accessoryType == UITableViewCellAccessoryNone) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    ChecklistItem *item = _items[indexPath.row];
+    item.checked = !item.checked;
+    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end

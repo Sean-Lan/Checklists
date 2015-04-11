@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E973504F1AD94E7B00DE3A06 /* ChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E973504E1AD94E7B00DE3A06 /* ChecklistItem.m */; };
 		E9E8869B1AD54E63006ACEDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E8869A1AD54E63006ACEDF /* main.m */; };
 		E9E8869E1AD54E63006ACEDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E8869D1AD54E63006ACEDF /* AppDelegate.m */; };
 		E9E886A11AD54E63006ACEDF /* ChecklistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E886A01AD54E63006ACEDF /* ChecklistsViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E973504D1AD94E7B00DE3A06 /* ChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChecklistItem.h; sourceTree = "<group>"; };
+		E973504E1AD94E7B00DE3A06 /* ChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChecklistItem.m; sourceTree = "<group>"; };
 		E9E886951AD54E63006ACEDF /* Checklists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E886991AD54E63006ACEDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9E8869A1AD54E63006ACEDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 		E9E8868C1AD54E63006ACEDF = {
 			isa = PBXGroup;
 			children = (
+				E973504D1AD94E7B00DE3A06 /* ChecklistItem.h */,
+				E973504E1AD94E7B00DE3A06 /* ChecklistItem.m */,
 				E9E886971AD54E63006ACEDF /* Checklists */,
 				E9E886B11AD54E63006ACEDF /* ChecklistsTests */,
 				E9E886961AD54E63006ACEDF /* Products */,
@@ -222,6 +227,7 @@
 				E9E886A11AD54E63006ACEDF /* ChecklistsViewController.m in Sources */,
 				E9E8869E1AD54E63006ACEDF /* AppDelegate.m in Sources */,
 				E9E8869B1AD54E63006ACEDF /* main.m in Sources */,
+				E973504F1AD94E7B00DE3A06 /* ChecklistItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +418,7 @@
 				E9E886BA1AD54E63006ACEDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9E886BB1AD54E63006ACEDF /* Build configuration list for PBXNativeTarget "ChecklistsTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +427,7 @@
 				E9E886BD1AD54E63006ACEDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
