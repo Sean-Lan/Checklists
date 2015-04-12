@@ -55,6 +55,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    NSLog(@"in tableView:numberOfRowsInSection");
     return [_items count];
 }
 
@@ -72,6 +73,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"in tableView:cellForRowAtIndexPath");
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
     ChecklistItem *item = _items[indexPath.row];
     [self configureTextForCell:cell withChecklistItem:item];
@@ -85,5 +87,22 @@
     [item toggleChecked];
     [self configureCheckmarkForCell:cell withChecklistItem:item];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+- (IBAction)addItem:(id)sender {
+    NSInteger newRowIndex = [_items count];
+    ChecklistItem *item = [[ChecklistItem alloc] init];
+    item.text = @"New item";
+    item.checked = NO;
+    [_items addObject:item];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
+    NSArray *indexPaths = @[indexPath];
+    
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [_items removeObjectAtIndex:indexPath.row];
+    NSArray *indexPaths = @[indexPath];
+    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 @end

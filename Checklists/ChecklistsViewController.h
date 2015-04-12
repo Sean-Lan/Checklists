@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ChecklistsViewController : UITableViewController
+- (IBAction)addItem:(id)sender;
 
 
 @end
