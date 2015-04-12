@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.tableView.rowHeight = 44;
     _items = [[NSMutableArray alloc] initWithCapacity:20];
     
     ChecklistItem *item;
@@ -57,8 +58,7 @@
     return [_items count];
 }
 
-- (void)configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    ChecklistItem *item = _items[indexPath.row];
+- (void)configureCheckmarkForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item {
     if (item.checked) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
@@ -66,20 +66,24 @@
     }
 }
 
+- (void)configureTextForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item {
+    UILabel *label = (UILabel *)[cell viewWithTag:1000];
+    label.text = item.text;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
-    UILabel *label = (UILabel *)[cell viewWithTag:1000];
     ChecklistItem *item = _items[indexPath.row];
-    label.text = item.text;
-    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    [self configureTextForCell:cell withChecklistItem:item];
+    [self configureCheckmarkForCell:cell withChecklistItem:item];
     return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     ChecklistItem *item = _items[indexPath.row];
-    item.checked = !item.checked;
-    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    [item toggleChecked];
+    [self configureCheckmarkForCell:cell withChecklistItem:item];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end
