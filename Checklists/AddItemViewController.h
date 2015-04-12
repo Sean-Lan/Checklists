@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddItemViewController : UITableViewController
+@interface AddItemViewController : UITableViewController<UITextViewDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end

@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.rowHeight = 44;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -34,6 +34,23 @@
 }
 
 - (IBAction)done:(id)sender {
+    NSLog(@"Current input is: %@.\n",self.textField.text);
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.textField becomeFirstResponder];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+//    NSLog(@"position:%lu,length:%lu,string:%@",(unsigned long)range.location, (unsigned long)range.length, string);
+    NSString *newText = [self.textField.text stringByReplacingCharactersInRange:range withString:string];
+    self.doneBarButton.enabled = ([newText length]>0);
+    return YES;
 }
 @end

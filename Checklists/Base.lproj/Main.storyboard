@@ -51,18 +51,33 @@
         <scene sceneID="yg7-1l-yBK">
             <objects>
                 <tableViewController id="hJx-4T-YqE" customClass="AddItemViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5zw-dl-ghp">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="5zw-dl-ghp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DWx-U2-e4X">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DWx-U2-e4X" id="Kw6-EC-KJM">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection id="miv-de-at2">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="DWx-U2-e4X">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DWx-U2-e4X" id="Kw6-EC-KJM">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J3f-Hh-aJ3">
+                                                    <rect key="frame" x="8" y="5" width="304" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done:" destination="hJx-4T-YqE" eventType="editingDidEndOnExit" id="8Z1-8a-JqN"/>
+                                                        <outlet property="delegate" destination="hJx-4T-YqE" id="Jbr-7g-72u"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="hJx-4T-YqE" id="V1R-IZ-RbV"/>
                             <outlet property="delegate" destination="hJx-4T-YqE" id="Vf4-Il-Eoc"/>
@@ -74,13 +89,17 @@
                                 <action selector="cancel:" destination="hJx-4T-YqE" id="K7f-xW-EM5"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="rzT-Ja-Goy">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="rzT-Ja-Goy">
                             <connections>
                                 <action selector="done:" destination="hJx-4T-YqE" id="YvZ-Yr-IMJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="doneBarButton" destination="rzT-Ja-Goy" id="4AA-6Q-uKl"/>
+                        <outlet property="textField" destination="J3f-Hh-aJ3" id="4tm-cN-7Ne"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ca-9B-ZIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
