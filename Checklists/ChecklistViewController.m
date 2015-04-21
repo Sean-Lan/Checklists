@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  ChecklistViewController.m
 //  Checklists
 //
 //  Created by Xiang on 15/4/8.
 //  Copyright (c) 2015年 X-Company. All rights reserved.
 //
 
-#import "ChecklistsViewController.h"
+#import "ChecklistViewController.h"
 #import "ChecklistItem.h"
-@interface ChecklistsViewController ()
+@interface ChecklistViewController ()
 
 @end
 
-@implementation ChecklistsViewController{
+@implementation ChecklistViewController {
     NSMutableArray *_items;
 }
 
