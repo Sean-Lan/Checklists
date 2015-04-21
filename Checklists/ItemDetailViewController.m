@@ -50,11 +50,11 @@
         self.itemToEdit.text = self.textField.text;
         [self.delegate itemDetailViewController:self didFinishEditingItem:self.itemToEdit];
     }
-    
-
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Aim to disable the user selection of table view cell.
+//    NSLog(@"indexPath: %@", indexPath);
     return nil;
 }
 
