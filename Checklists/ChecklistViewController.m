@@ -8,6 +8,7 @@
 
 #import "ChecklistViewController.h"
 #import "ChecklistItem.h"
+#import "Checklist.h"
 @interface ChecklistViewController ()
 
 @end
@@ -30,6 +31,7 @@
 //    NSLog(@"Document Directory: %@", [self documentsDirectory]);
 //    NSLog(@"Final data file path: %@", [self dataFilePath]);
     self.tableView.rowHeight = 44;
+    self.title = self.checklist.name;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -18,7 +18,7 @@
 
 @end
 
-@interface ItemDetailViewController : UITableViewController<UITextViewDelegate>
+@interface ItemDetailViewController : UITableViewController <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
 
 - (IBAction)cancel:(id)sender;
