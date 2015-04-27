@@ -9,6 +9,7 @@
 #import "AllListsViewController.h"
 #import "Checklist.h"
 #import "ChecklistViewController.h"
+#import "ChecklistItem.h"
 
 @interface AllListsViewController () {
     NSMutableArray *_lists;
@@ -53,6 +54,11 @@
         list = [[Checklist alloc] init];
         list.name = @"家庭";
         [_lists addObject:list];
+        for (Checklist *list in _lists) {
+            ChecklistItem *item = [[ChecklistItem alloc] init];
+            item.text = [NSString stringWithFormat:@"Item for: %@", list.name];
+            [list.items addObject:item];
+        }
     }
     return self;
 }

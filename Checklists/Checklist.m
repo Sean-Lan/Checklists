@@ -9,5 +9,11 @@
 #import "Checklist.h"
 
 @implementation Checklist
+- (id)init {
+    if ((self = [super init])) {
+        self.items = [[NSMutableArray alloc] initWithCapacity:20];
+    }
+    return self;
+}
 
 @end
