@@ -19,6 +19,7 @@
 		E9E886A61AD54E63006ACEDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9E886A51AD54E63006ACEDF /* Images.xcassets */; };
 		E9E886A91AD54E63006ACEDF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9E886A71AD54E63006ACEDF /* LaunchScreen.xib */; };
 		E9E886B51AD54E63006ACEDF /* ChecklistsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E886B41AD54E63006ACEDF /* ChecklistsTests.m */; };
+		E9F6B98A1AF0FA6F0033014D /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F6B9891AF0FA6F0033014D /* DataModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		E9E886AE1AD54E63006ACEDF /* ChecklistsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChecklistsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E886B31AD54E63006ACEDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9E886B41AD54E63006ACEDF /* ChecklistsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistsTests.m; sourceTree = "<group>"; };
+		E9F6B9881AF0FA6F0033014D /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		E9F6B9891AF0FA6F0033014D /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 				E9043AF11AE677FC001D894F /* Checklist.m */,
 				E97D7ACF1AEB59DB003B70A8 /* ListDetailViewController.h */,
 				E97D7AD01AEB59DB003B70A8 /* ListDetailViewController.m */,
+				E9F6B9881AF0FA6F0033014D /* DataModel.h */,
+				E9F6B9891AF0FA6F0033014D /* DataModel.m */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 			files = (
 				E97D7AD11AEB59DB003B70A8 /* ListDetailViewController.m in Sources */,
 				E9E886A11AD54E63006ACEDF /* ChecklistViewController.m in Sources */,
+				E9F6B98A1AF0FA6F0033014D /* DataModel.m in Sources */,
 				E9E8869E1AD54E63006ACEDF /* AppDelegate.m in Sources */,
 				E9043AEF1AE66FC5001D894F /* AllListsViewController.m in Sources */,
 				E9E8869B1AD54E63006ACEDF /* main.m in Sources */,
