@@ -15,6 +15,7 @@
 - (id) init {
     if (([super init])) {
         [self loadChecklists];
+        [self registerDefaults];
     }
     return self;
 }
@@ -53,5 +54,19 @@
     }
 }
 
+#pragma mark - Manipulate NSUserDefaults
+
+- (void)registerDefaults {
+    NSDictionary *dictionary = @{ @"ChecklistIndex": @"-1" };
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+}
+
+- (NSInteger)indexOfSelectedChecklist {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"ChecklistIndex"];
+}
+
+- (void)setIndexOfSelectedChecklist:(NSInteger)index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:@"ChecklistIndex"];
+}
 
 @end
