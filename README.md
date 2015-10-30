@@ -3,15 +3,15 @@ This is a time arrangement app capable of grouping things in different lists and
 
 ----------------------
 ## Screenshots
-* Home page:
+* Home page:  
 ![image](./Screenshots/homepage.png)  
 * Tab any list you will enter list page:  
 ![image](./Screenshots/listpage.png)
-* You can choose a list icon for your list:  
+* You can choose a list icon for your list:   
 ![image](./Screenshots/chooseIcon.png)
-* You can add an arrangement to a list:
+* You can add an arrangement to a list:  
 ![image](./Screenshots/addItem.png)
-* And at the right time, you will receive a notification.  
+* And at the right time, you will receive a notification:    
 ![image](./Screenshots/notification.png)  
 
 -----------------------
