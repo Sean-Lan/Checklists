@@ -2,40 +2,53 @@
 //  AppDelegate.m
 //  Checklists
 //
-//  Created by Xiang on 15/4/8.
-//  Copyright (c) 2015年 X-Company. All rights reserved.
+//  Created by Xiang on 10/27/15.
+//  Copyright © 2015 X-Company. All rights reserved.
 //
 
 #import "AppDelegate.h"
 #import "AllListsViewController.h"
 #import "DataModel.h"
 
-@interface AppDelegate () {
-    DataModel *_dataModel;
-}
+@interface AppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    DataModel *_dataModel;
+}
 
+
+-(void)saveData{
+    [_dataModel saveChecklists];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    // Initialize the data model and set it to AllListViewController.
-    _dataModel = [[DataModel alloc] init];
+    _dataModel = [[DataModel alloc]init];
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     AllListsViewController *controller = navigationController.viewControllers[0];
     controller.dataModel = _dataModel;
+    /**
+     * Need add this to make it works on iOS 9
+     */
+    UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)saveData {
-    [_dataModel saveChecklists];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -57,4 +70,6 @@
     [self saveData];
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+}
 @end

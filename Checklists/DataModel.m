@@ -2,71 +2,100 @@
 //  DataModel.m
 //  Checklists
 //
-//  Created by Xiang on 15/4/29.
-//  Copyright (c) 2015年 X-Company. All rights reserved.
+//  Created by Xiang on 10/28/15.
+//  Copyright © 2015 X-Company. All rights reserved.
 //
 
 #import "DataModel.h"
+#import "Checklist.h"
 
 @implementation DataModel
 
-#pragma mark - Initialization
-
-- (id) init {
-    if (([super init])) {
+- (id)init {
+    if ((self =[super init])) {
         [self loadChecklists];
         [self registerDefaults];
+        [self handleFirstTime];
     }
     return self;
 }
 
-#pragma mark - Data saving and loading
-
-- (NSString *)documentsDirectory {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths firstObject];
-    return documentsDirectory;
+#pragma mark - NSUserDefaults Related
+- (void)registerDefaults{
+    NSDictionary *dictionary = @{@"ChecklistIndex" :@-1, @"FirstTime":@YES, @"ChecklistItemId":@0};
+    [[NSUserDefaults standardUserDefaults]registerDefaults:dictionary];
 }
 
-- (NSString *)dataFilePath {
-    return [[self documentsDirectory] stringByAppendingPathComponent:@"Checklists.plist"];
+- (NSInteger)indexOfSelectedChecklist{
+    return [[NSUserDefaults standardUserDefaults]integerForKey:@"ChecklistIndex"];
 }
 
-- (void)saveChecklists {
-    NSMutableData *data = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    
-    [archiver encodeObject:self.lists forKey:@"Checklists"];
-    [archiver finishEncoding];
-    [data writeToFile:[self dataFilePath] atomically:YES];
+- (void)setIndexOfSelectedChecklist:(NSInteger)index{
+    [[NSUserDefaults standardUserDefaults]setInteger:index forKey:@"ChecklistIndex"];
 }
 
-- (void)loadChecklists {
-    NSString *path = [self dataFilePath];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        
-        self.lists = [unarchiver decodeObjectForKey:@"Checklists"];
-        [unarchiver finishDecoding];
-    } else {
-        self.lists = [[NSMutableArray alloc] initWithCapacity:20];
+- (void)handleFirstTime {
+    BOOL firstTime = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstTime"];
+    if (firstTime) {
+        Checklist *checklist = [[Checklist alloc] init];
+        checklist.name = @"List";
+        [self.lists addObject:checklist];
+        [self setIndexOfSelectedChecklist:0];
+        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"FirstTime"];
     }
 }
 
-#pragma mark - Manipulate NSUserDefaults
+# pragma mark - data load and save
 
-- (void)registerDefaults {
-    NSDictionary *dictionary = @{ @"ChecklistIndex": @"-1" };
-    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+- (NSString*)documentsDirectory{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths firstObject]; return documentsDirectory;
 }
 
-- (NSInteger)indexOfSelectedChecklist {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:@"ChecklistIndex"];
+- (NSString *)dataFilePath {
+    return [[self documentsDirectory]stringByAppendingPathComponent:@"Checklists.plist"];
 }
 
-- (void)setIndexOfSelectedChecklist:(NSInteger)index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:@"ChecklistIndex"];
+- (void)saveChecklists {
+    
+    NSMutableData *data = [[NSMutableData alloc]init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
+    
+    [archiver encodeObject:self.lists forKey:@"Checklists"];
+    [archiver finishEncoding];
+    
+    [data writeToFile:[self dataFilePath] atomically:YES];
+    
+    
 }
 
+- (void)loadChecklists {
+    
+    NSString *path = [self dataFilePath];
+    
+    if ([[NSFileManager defaultManager]fileExistsAtPath:path]) {
+        
+        NSData *data = [[NSData alloc]initWithContentsOfFile:path];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
+        
+        self.lists = [unarchiver decodeObjectForKey:@"Checklists"];
+        
+        [unarchiver finishDecoding];
+    } else {
+        self.lists = [[NSMutableArray alloc]initWithCapacity:20];
+    }
+    
+}
+
+# pragma mark - data manipulation
+- (void)sortChecklists {
+    [self.lists sortUsingSelector:@selector(compare:)];
+}
+
++ (NSInteger)nextChecklistItemId{
+    NSUserDefaults *userDefaults =[NSUserDefaults standardUserDefaults]; NSInteger itemId = [userDefaults integerForKey:@"ChecklistItemId"];
+    [userDefaults setInteger:itemId +1 forKey:@"ChecklistItemId"];
+    [userDefaults synchronize];
+    return itemId;
+}
 @end
